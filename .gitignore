@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+*.log
+.vscode/
+
+# safe publish
+node_modules/
+dist/
+build/
+.env
+.env.*
+*.pem
+*.key
+*.sql
+.vscode/
+untuk-intan/

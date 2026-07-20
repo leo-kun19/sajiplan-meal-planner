@@ -1,0 +1,29 @@
+# Konfigurasi Netlify untuk SajiPlan (PWA statis, tanpa build step)
+[build]
+  # Tidak ada proses build — file langsung disajikan dari root.
+  publish = "."
+  command = ""
+
+# Service worker JANGAN di-cache lama, supaya update versi langsung terdeteksi.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Manifest selalu segar.
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Data resep boleh di-cache singkat (revalidasi).
+[[headers]]
+  for = "/data/recipes-id.json"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Aset statis (gambar/ikon) boleh di-cache lama.
+[[headers]]
+  for = "/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
